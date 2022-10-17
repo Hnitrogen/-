@@ -1,31 +1,22 @@
 #include <iostream>
 
-using namespace std;
+using namespace std ;
+
+int fiber(int u)
+{
+    if(u==0)    return 9;
+    else return 10 * fiber(u-1) ;
+}
 
 int main()
 {
 	int n ;
 	cin >> n ;
+    if(n==1) {cout << 10 ; return 0;}
 
-	if(n == 1) {cout << 10 ; return 0;}
-
-	int res = 0 ;
-	for(int i = 10 ; i < pow(10,n) ; i++)
-	{
-		int tmp = i ; int l , r ;
-		while(tmp) {r++ ; tmp /= 10 ;} 
-
-		int x = i ;
-		bool flag = true;
-		while(l <= r) 
-		{
-
-		}
-	}
+	int k = (n+1)/2 - 1 ;
 	
-	res += 10 ;
+	cout << fiber(k) << endl ;
 
-	cout << res << endl ;
-
-	return 0 ;
+	return 0;
 }
