@@ -1,33 +1,46 @@
-#include <math.h>
-#include <string.h>
 #include <stdio.h>
+#include <string.h>
 
-char *clean(char *s){
-	char *p,*q;
-	p=q=s;
-	while(*p!='\0'){
-		if(*p>='a' && *p<='z')
-			*q++=*p;//保存小写字符
-		else if(*p>='A' && *p<='Z')
-			*q++=*p;    //[textArea=1,20];
-            //将P指针指向的内容转换为小写并保存于q指针指向的存储单元
-		else if(*p>='0' && *p<='9')
-			*q++=*p;    //[textArea=1,20];//保存数字字符
-			
-		p++;       
+struct person{
+	int number;
+	char ch;
+};
+
+int main(){
+	char str[20]="1level1";
+	struct person persons[100];
+	int i,n,m,count=0,k;
+	
+	scanf("%d%d",&n,&m);
+	
+	for(i=0;i<n;i++) {
+		persons[i].number=i+1;
+		persons[i].ch='*';
 	}
-	*q='\0';
 	
-	return s;
-}
+	i=0;//i为每次循环的计数变量
+	k=0;//k为1，2，3...计数的变量；
+	count=0;//退出者的计数变量 
+	
+	//printf("%d\n" , m );
+	
+	while(count < strlen(str) )  {
+		if(persons[i].ch=='*')k++;//此位置之人没有退出
+		if(k==m){//报数为m的人做以下处理
+			//[textArea=3,20]
+			persons[i].ch = str[count]; 
+		    count++ ;
+		    k = 0 ; 
+		} 
+		i++;
+		if(i == n) i = 0 ;
+	}
 
-int main()
-{
-	char str[80],*p;
-	gets(str);
-	//[textArea=1,10];//注意指针变量p的使用
-	p = clean(str) ;
+	for(i=0;i<n;i++) {
+// 		if([textArea=1,20]!='*')
+        if(persons[i].ch != '*')
+			printf("%d %c \n",persons[i].number,persons[i].ch);
+	}
 	
-	puts(p);
-	return 0;
+	return 0 ;
 }
